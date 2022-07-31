@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legos</title>
+    <style>
+        picture {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100px;
+            margin-bottom: 10px;
+        }
+
+        img{
+            border-radius: 50%;
+            box-shadow: 0 0 15px #555;
+            margin-bottom: 10px;
+        }
+
+        img.disabled{
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to CoderHouse</h1>
+    <div>
+        <!-- Solo html -->
+        <h3>Solo Html</h3>
+        <picture>
+            <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="Lego 1"> Lego 1
+        </picture>
+        <picture>
+            <img src="https://randomuser.me/api/portraits/lego/2.jpg" alt="Lego 1"> Lego 2
+        </picture>
+        <picture>
+            <img src="https://randomuser.me/api/portraits/lego/3.jpg" alt="Lego 1"> Lego 3
+        </picture>
+        <picture>
+            <img src="https://randomuser.me/api/portraits/lego/4.jpg" alt="Lego 1"> Lego 4
+        </picture>
+    </div>
+
+    <script>
+        const $app = document.getElementById('app');
+        console.log($app);
+        
+        const Avatar = (params) => {
+            const src = `https://randomuser.me/api/portraits/lego/${params}.jpg`;
+            //loscambios que realice aqui se veran replicados en todos los componentes
+            return `
+                <picture>
+                    <img src="${src}" alt "Women ${params.id}"/>
+                    ${params.name}    
+                </picture>
+            `;  
+        };
+
+        $app.innerHTML += Avatar({id: 3, name: 'Lego 3'});
+        $app.innerHTML += Avatar({id: 4, name: 'Lego 4'});
+
+        $app.querySelectorAll('img').forEach((img) => {
+            img.addEventListener('click', () => {
+                img.classList.toggle('disabled');
+            })
+        })
+
+    </script>
+</body>
+</html>
